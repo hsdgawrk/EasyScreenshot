@@ -9,6 +9,7 @@ set(SOURCES
     NativeUtils.h NativeUtils.cpp
     CanvasWidget.h CanvasWidget.cpp
 	UIAScanner.h UIAScanner.cpp
+	SelectionBar.h SelectionBar.cpp
 )
 
 add_library(ScreenshotLib SHARED ${SOURCES})

@@ -8,6 +8,42 @@
 #define WIN32_LEAN_AND_MEAN
 #endif
 
+void* NativeUtils::getHwndUnderMouse(const QPoint& globalPos, double devicePixelRatio, WId skipId) {
+    POINT pt;
+    pt.x = static_cast<LONG>(globalPos.x() * devicePixelRatio);
+    pt.y = static_cast<LONG>(globalPos.y() * devicePixelRatio);
+
+    HWND hwnd = WindowFromPoint(pt);
+
+    // 穿透遮罩层逻辑
+    if (hwnd == (HWND)skipId) {
+        HWND next = GetWindow(hwnd, GW_HWNDNEXT);
+        while (next) {
+            if (IsWindowVisible(next)) {
+                RECT bounds;
+                GetWindowRect(next, &bounds);
+                if (PtInRect(&bounds, pt)) {
+                    hwnd = next;
+                    break;
+                }
+            }
+            next = GetWindow(next, GW_HWNDNEXT);
+        }
+    }
+
+    // 尝试钻取子窗口 (ChildWindowFromPointEx)
+    if (hwnd && hwnd != (HWND)skipId) {
+        POINT ptClient = pt;
+        ScreenToClient(hwnd, &ptClient);
+        HWND child = ChildWindowFromPointEx(hwnd, ptClient, CWP_ALL);
+        if (child && child != hwnd && IsWindowVisible(child)) {
+            hwnd = child;
+        }
+    }
+
+    return (hwnd == (HWND)skipId) ? nullptr : hwnd;
+}
+
 // 辅助函数：判断窗口类名是否属于某些特殊的不建议吸附的类（可选）
 bool isSpecialWindow(HWND hwnd) {
     char className[256];

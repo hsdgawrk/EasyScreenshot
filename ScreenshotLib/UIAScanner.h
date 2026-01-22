@@ -21,7 +21,7 @@ public:
     ~UIAScanner();
 
     bool init();
-    QRect detectElementRect(const QPoint &globalPos, double devicePixelRatio);
+    QRect detectElementRect(void* hwnd, const QPoint& globalPos, double devicePixelRatio);
 
 private:
     ComPtr<IUIAutomation> m_automation;

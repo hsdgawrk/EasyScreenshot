@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="F:\QtWorkspace\Screenshot\ScreenshotLib\ScreenshotLib_autogen\mocs_compilation_Debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\QtWorkspace\Screenshot\ScreenshotLib\ScreenCaptureManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\QtWorkspace\Screenshot\ScreenshotLib\NativeUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\QtWorkspace\Screenshot\ScreenshotLib\CanvasWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\QtWorkspace\Screenshot\ScreenshotLib\ScreenshotLib_autogen\mocs_compilation_Release.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\QtWorkspace\Screenshot\ScreenshotLib\ScreenshotLib_autogen\mocs_compilation_MinSizeRel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\QtWorkspace\Screenshot\ScreenshotLib\ScreenshotLib_autogen\mocs_compilation_RelWithDebInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="F:\QtWorkspace\Screenshot\ScreenshotLib\screenshot_global.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="F:\QtWorkspace\Screenshot\ScreenshotLib\ScreenCaptureManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="F:\QtWorkspace\Screenshot\ScreenshotLib\NativeUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="F:\QtWorkspace\Screenshot\ScreenshotLib\CanvasWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="F:\QtWorkspace\Screenshot\ScreenshotLib\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{9FEBA16E-5B0E-3ABC-93A3-4107D143066C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{BCFFCC82-32FE-3B61-8998-1CBBEE2A90EB}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

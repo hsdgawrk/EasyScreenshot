@@ -1,0 +1,62 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "windows-base",
+      "hidden": true,
+      "generator": "Visual Studio 18 2026",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "cl.exe",
+        "CMAKE_CXX_COMPILER": "cl.exe"
+      }
+    },
+    {
+      "name": "x64-Debug",
+      "displayName": "x64 Debug (Qt 64-bit)",
+      "description": "Target Windows x64 using Qt 64-bit",
+      "inherits": "windows-base",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_PREFIX_PATH": "E:/Qt/5.12.12/msvc2017_64" 
+      }
+    },
+    {
+      "name": "x64-Release",
+      "displayName": "x64 Release (Qt 64-bit)",
+      "description": "Target Windows x64 Release",
+      "inherits": "x64-Debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "x86-Debug",
+      "displayName": "x86 Debug (Qt 32-bit)",
+      "description": "Target Windows x86 using Qt 32-bit",
+      "inherits": "windows-base",
+      "architecture": {
+        "value": "Win32",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_PREFIX_PATH": "E:/Qt/5.12.12/msvc2017"
+      }
+    },
+    {
+      "name": "x86-Release",
+      "displayName": "x86 Release (Qt 32-bit)",
+      "description": "Target Windows x86 Release",
+      "inherits": "x86-Debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ]
+}

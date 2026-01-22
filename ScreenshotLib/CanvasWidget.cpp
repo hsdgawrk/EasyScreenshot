@@ -299,7 +299,7 @@ void CanvasWidget::mouseMoveEvent(QMouseEvent *event)
             // 第一次创建选区 (橡皮筋)
             m_selectionRect = QRect(m_dragStartPos, event->pos()).normalized();
         }
-        /*else
+        else
         {
             // 调整已有选区
             QPoint delta = event->pos() - m_dragStartPos;

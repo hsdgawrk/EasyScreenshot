@@ -67,16 +67,18 @@ void CanvasWidget::mouseMoveEvent(QMouseEvent *event)
         qreal dpr = windowHandle()->devicePixelRatio();
 
         // --- 优先尝试 UIA 探测 ---
-        QRect snapped = m_uiaScanner->detectElementRect(event->globalPos(), dpr);
-        // UIA 有时候会返回整个 Desktop 的大矩形，我们通常不需要吸附整个桌面
-        // 简单判断：如果吸附区域等于屏幕大小，则忽略（或者你也可以保留）
-        if (snapped.isValid() && snapped.size() == this->size())
-        {
-            snapped = QRect(); // 视为无效，或者降级处理
-        }
+        // 1. 先用 WinAPI 穿透遮罩，找到底下的“真身” HWND
+        void* targetHwnd = NativeUtils::getHwndUnderMouse(event->globalPos(), dpr, this->winId());
 
-        if (snapped.isNull())
-        {
+        QRect snapped;
+        if (targetHwnd) {
+            // 2. 将真身 HWND 交给 UIA 进行内部解剖
+            snapped = m_uiaScanner->detectElementRect(targetHwnd, event->globalPos(), dpr);
+        }
+        
+        // 3. 如果 UIA 失败（比如目标窗口不支持 UIA），回退到 WinAPI 矩形
+        if (snapped.isNull() || !snapped.isValid()) {
+            // 这里调用之前的旧方法作为兜底
             snapped = NativeUtils::getWindowRectUnderMouse(event->globalPos(), dpr, this->winId());
         }
 
@@ -91,10 +93,10 @@ void CanvasWidget::mouseMoveEvent(QMouseEvent *event)
             QPoint topLeft = this->mapFromGlobal(snapped.topLeft());
             m_selectionRect = QRect(topLeft, snapped.size());
         }
-        else
+        /*else
         {
             m_selectionRect = QRect();
-        }
+        }*/
         update();
     }
     else if (m_state == Selecting)
